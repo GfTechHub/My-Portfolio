@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezekiel Olaleye - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --accent: #06b6d4;
+        }
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-link {
+        color: var(--dark);
+        font-weight: 500;
+        margin: 0 0.5rem;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--primary);
+    }
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding-top: 80px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        top: -250px;
+        right: -250px;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        bottom: -150px;
+        left: -150px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        animation: fadeInUp 0.8s;
+    }
+
+    .hero .subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        animation: fadeInUp 0.8s 0.2s backwards;
+    }
+
+    .btn-primary-custom {
+        background: white;
+        color: var(--primary);
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeInUp 0.8s 0.4s backwards;
+    }
+
+    .btn-primary-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        color: var(--primary);
+    }
+
+    .social-links {
+        margin-top: 2rem;
+        animation: fadeInUp 0.8s 0.6s backwards;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+        transition: transform 0.3s;
+        display: inline-block;
+    }
+
+    .social-links a:hover {
+        transform: scale(1.2);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .section {
+        padding: 5rem 0;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+
+    .skill-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 2px solid transparent;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border-color: var(--primary);
+    }
+
+    .skill-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .skill-card h4 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .skill-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .skill-list li {
+        padding: 0.3rem 0;
+        color: #64748b;
+    }
+
+    .skill-list li::before {
+        content: '▹';
+        color: var(--primary);
+        margin-right: 0.5rem;
+        font-weight: bold;
+    }
+
+    .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 2rem;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 4rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-content h4 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--dark);
+    }
+
+    .project-content p {
+        color: #64748b;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-links a {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        margin-right: 0.5rem;
+        transition: background 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .project-links a:hover {
+        background: var(--secondary);
+    }
+
+    .experience-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--primary);
+    }
+
+    .experience-card h4 {
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .experience-card .company {
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .experience-card .date {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .experience-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .experience-card ul li {
+        padding: 0.3rem 0;
+        color: #64748b;
+    }
+
+    .experience-card ul li::before {
+        content: '✓';
+        color: var(--primary);
+        margin-right: 0.5rem;
+        font-weight: bold;
+    }
+
+    .contact-info {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 3rem;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .contact-info h3 {
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    .contact-item {
+        margin: 1.5rem 0;
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .contact-item a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+    }
+
+    footer {
+        background: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .hero .subtitle {
+            font-size: 1.1rem;
+        }
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">EO Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+```
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Olaleye Ezekiel Ifeoluwa</h1>
+            <p class="subtitle">Software Developer • Virtual Assistant • Product Marketing Specialist • Video Editor</p>
+            <a href="#contact" class="btn-primary-custom">Get In Touch</a>
+            <div class="social-links">
+                <a href="mailto:olaleyeezekiel06@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:09158473824"><i class="fas fa-phone"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="lead text-center">A versatile and results-driven digital professional with expertise in SaaS landing page development, virtual assistance, customer support, product marketing, and video production. I build high-converting landing pages in under 24 hours, support business operations with precision, and create compelling marketing videos that boost visibility and conversions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="section">
+    <div class="container">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Technical & Software</h4>
+                    <ul class="skill-list">
+                        <li>Landing Page Development</li>
+                        <li>HTML, CSS, Bootstrap</li>
+                        <li>SaaS UI/UX Design</li>
+                        <li>CRM & Workflow Automation</li>
+                        <li>Email Marketing Tools</li>
+                        <li>Website Optimization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="skill-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h4>Marketing & Creative</h4>
+                    <ul class="skill-list">
+                        <li>Product Marketing</li>
+                        <li>Video Editing & Ad Creation</li>
+                        <li>Video Reviews</li>
+                        <li>Storytelling & Scriptwriting</li>
+                        <li>Content Editing</li>
+                        <li>Brand Messaging</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="skill-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Virtual Assistant</h4>
+                    <ul class="skill-list">
+                        <li>Lead Generation</li>
+                        <li>Customer Support</li>
+                        <li>Campaign Management</li>
+                        <li>Research & Data Entry</li>
+                        <li>Social Media Management</li>
+                        <li>Admin & Scheduling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>December Landing Page</h4>
+                        <p>A festive, high-converting landing page with modern design and smooth animations.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Password Generator</h4>
+                        <p>Secure password generator with customizable options and strength indicator.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>E-Commerce Mini App</h4>
+                        <p>Functional e-commerce platform with cart, checkout, and product management.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Google Dinosaur Game</h4>
+                        <p>Recreation of the classic Chrome dinosaur game with JavaScript.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Play Game</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>GFData Platform</h4>
+                        <p>Digital service platform for data and subscription sales with automated workflows.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>November Landing Page</h4>
+                        <p>Clean and professional landing page for autumn campaigns.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="section">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="experience-card">
+                    <h4>Virtual Assistant & Video Reviewer</h4>
+                    <div class="company">Nannoy.com</div>
+                    <div class="date">2025</div>
+                    <ul>
+                        <li>Managed day-to-day platform operations and administrative tasks</li>
+                        <li>Produced high-quality video reviews for tools and software</li>
+                        <li>Supported marketing and user engagement initiatives</li>
+                        <li>Managed communities on WhatsApp & Discord</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="experience-card">
+                    <h4>Founder & Operations Manager</h4>
+                    <div class="company">GFData</div>
+                    <div class="date">2024 – Present</div>
+                    <ul>
+                        <li>Built digital platform for data and subscription services</li>
+                        <li>Designed high-converting landing pages</li>
+                        <li>Created product marketing videos</li>
+                        <li>Managed operations, support, and analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-info">
+                    <h3>Let's Work Together</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ado-Ekiti, Ekiti State, Nigeria</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:09158473824">09158473824</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:olaleyeezekiel06@gmail.com">olaleyeezekiel06@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Olaleye Ezekiel Ifeoluwa. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+```
+
+</body>
+</html>
