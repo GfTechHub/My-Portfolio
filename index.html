@@ -16,7 +16,7 @@
             --accent: #06b6d4;
         }
 
-```
+
     * {
         margin: 0;
         padding: 0;
@@ -72,6 +72,8 @@
         display: flex;
         align-items: center;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 200% 200%;
+        animation: gradientShift 15s ease infinite;
         color: white;
         padding-top: 80px;
         position: relative;
@@ -87,6 +89,7 @@
         border-radius: 50%;
         top: -250px;
         right: -250px;
+        animation: float 8s ease-in-out infinite;
     }
 
     .hero::after {
@@ -98,6 +101,7 @@
         border-radius: 50%;
         bottom: -150px;
         left: -150px;
+        animation: float 10s ease-in-out infinite reverse;
     }
 
     .hero-content {
@@ -129,10 +133,27 @@
         display: inline-block;
         transition: transform 0.3s, box-shadow 0.3s;
         animation: fadeInUp 0.8s 0.4s backwards;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary-custom::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-primary-custom:hover::before {
+        left: 100%;
     }
 
     .btn-primary-custom:hover {
-        transform: translateY(-3px);
+        transform: translateY(-3px) scale(1.05);
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         color: var(--primary);
     }
@@ -146,12 +167,30 @@
         color: white;
         font-size: 1.5rem;
         margin-right: 1.5rem;
-        transition: transform 0.3s;
+        transition: all 0.3s ease;
         display: inline-block;
+        position: relative;
+    }
+
+    .social-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 100%;
+        height: 2px;
+        background: white;
+        transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover::after {
+        transform: translateX(-50%) scaleX(1);
     }
 
     .social-links a:hover {
-        transform: scale(1.2);
+        transform: translateY(-5px) scale(1.2);
+        filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.5));
     }
 
     @keyframes fadeInUp {
@@ -177,6 +216,7 @@
         position: relative;
         color: var(--dark);
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        animation: scaleIn 0.6s ease;
     }
 
     .section-title::after {
@@ -190,6 +230,7 @@
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         border-radius: 2px;
         box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+        animation: slideInLeft 0.6s ease 0.3s backwards;
     }
 
     /* Make section titles more visible on light backgrounds */
@@ -259,6 +300,9 @@
     .skill-card h4 {
         font-weight: 600;
         margin-bottom: 1rem;
+        color: var(--dark);
+        font-size: 1.3rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .skill-list {
@@ -268,7 +312,9 @@
 
     .skill-list li {
         padding: 0.3rem 0;
-        color: #64748b;
+        color: #1e293b;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
     .skill-list li::before {
@@ -276,6 +322,7 @@
         color: var(--primary);
         margin-right: 0.5rem;
         font-weight: bold;
+        font-size: 1.2rem;
     }
 
     .project-card {
@@ -317,6 +364,7 @@
         width: 100%;
         height: 250px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 200% 200%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -324,12 +372,31 @@
         font-size: 4rem;
         position: relative;
         overflow: hidden;
+        transition: all 0.5s ease;
+    }
+
+    .project-card:hover .project-image {
+        background-position: 100% 100%;
+    }
+
+    .project-image i {
+        transition: all 0.5s ease;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    }
+
+    .project-card:hover .project-image i {
+        transform: scale(1.2) rotate(10deg);
     }
 
     .project-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image img {
+        transform: scale(1.1);
     }
 
     .project-content {
@@ -339,12 +406,16 @@
     .project-content h4 {
         font-weight: 700;
         margin-bottom: 1rem;
-        color: var(--dark);
+        color: #1e293b;
+        font-size: 1.3rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .project-content p {
-        color: #64748b;
+        color: #334155;
         margin-bottom: 1.5rem;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
     .project-links a {
@@ -355,12 +426,44 @@
         text-decoration: none;
         border-radius: 25px;
         margin-right: 0.5rem;
-        transition: background 0.3s;
+        transition: all 0.3s ease;
         font-size: 0.9rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-links a::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.5s, height 0.5s;
+    }
+
+    .project-links a:hover::before {
+        width: 300px;
+        height: 300px;
     }
 
     .project-links a:hover {
         background: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .project-links a i {
+        position: relative;
+        z-index: 1;
+    }
+
+    .project-links a span {
+        position: relative;
+        z-index: 1;
     }
 
     .experience-card {
@@ -402,18 +505,22 @@
         color: var(--primary);
         font-weight: 700;
         margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        text-shadow: 0 1px 3px rgba(99, 102, 241, 0.2);
     }
 
     .experience-card .company {
         font-weight: 600;
-        color: var(--dark);
+        color: #1e293b;
         margin-bottom: 0.5rem;
+        font-size: 1.1rem;
     }
 
     .experience-card .date {
-        color: #64748b;
-        font-size: 0.9rem;
+        color: #475569;
+        font-size: 0.95rem;
         margin-bottom: 1rem;
+        font-weight: 500;
     }
 
     .experience-card ul {
@@ -423,7 +530,9 @@
 
     .experience-card ul li {
         padding: 0.3rem 0;
-        color: #64748b;
+        color: #1e293b;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
     .experience-card ul li::before {
@@ -431,6 +540,7 @@
         color: var(--primary);
         margin-right: 0.5rem;
         font-weight: bold;
+        font-size: 1.1rem;
     }
 
     .contact-info {
@@ -537,7 +647,7 @@
         }
     }
 </style>
-```
+
 
 </head>
 <body>
@@ -559,7 +669,7 @@
         </div>
     </nav>
 
-```
+
 <section id="home" class="hero">
     <div class="container">
         <div class="hero-content">
@@ -822,17 +932,19 @@
         }
     });
 
-    // Card entrance animations
+    // Card entrance animations with stagger effect
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
             }
         });
     }, observerOptions);
@@ -844,8 +956,89 @@
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-content');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            hero.style.opacity = 1 - scrolled / 500;
+        }
+    });
+
+    // Mouse move parallax effect on cards
+    document.querySelectorAll('.skill-card, .project-card, .experience-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        });
+    });
+
+    // Typing effect for hero subtitle (optional)
+    const subtitle = document.querySelector('.hero .subtitle');
+    if (subtitle) {
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+    }
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn-primary-custom, .project-links a').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Animate skill icons on scroll
+    const iconObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'pulse 1s ease';
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.skill-card i').forEach(icon => {
+        iconObserver.observe(icon);
+    });
 </script>
-```
 
 </body>
 </html>
