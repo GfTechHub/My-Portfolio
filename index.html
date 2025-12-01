@@ -120,7 +120,7 @@
         font-size: 1.3rem;
         opacity: 0.9;
         margin-bottom: 2rem;
-        animation: fadeInUp 0.8s 0.2s backwards;
+        min-height: 1.6rem;
     }
 
     .btn-primary-custom {
@@ -204,6 +204,96 @@
         }
     }
 
+    @keyframes float {
+        0%, 100% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(20px, 20px);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+    }
+
     .section {
         padding: 5rem 0;
     }
@@ -233,13 +323,11 @@
         animation: slideInLeft 0.6s ease 0.3s backwards;
     }
 
-    /* Make section titles more visible on light backgrounds */
     .bg-light .section-title {
         color: var(--dark);
         font-weight: 800;
     }
 
-    /* Dark title variant for white/light sections */
     #skills .section-title,
     #experience .section-title {
         background: linear-gradient(135deg, var(--dark) 0%, #475569 100%);
@@ -247,6 +335,28 @@
         -webkit-text-fill-color: transparent;
         font-weight: 800;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .category-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 2px;
     }
 
     .skill-card {
@@ -426,6 +536,7 @@
         text-decoration: none;
         border-radius: 25px;
         margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
         transition: all 0.3s ease;
         font-size: 0.9rem;
         position: relative;
@@ -581,15 +692,6 @@
         animation: float 8s ease-in-out infinite reverse;
     }
 
-    @keyframes float {
-        0%, 100% {
-            transform: translate(0, 0);
-        }
-        50% {
-            transform: translate(20px, 20px);
-        }
-    }
-
     .contact-info h3 {
         font-weight: 700;
         margin-bottom: 2rem;
@@ -635,6 +737,106 @@
         padding: 2rem 0;
     }
 
+    /* Video Modal Styles */
+    .video-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        animation: fadeIn 0.3s ease;
+    }
+
+    .video-modal-content {
+        position: relative;
+        margin: 5% auto;
+        width: 90%;
+        max-width: 900px;
+    }
+
+    .video-modal video {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .close-video {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-video:hover {
+        color: var(--primary);
+    }
+
+    /* Image Gallery Modal */
+    .gallery-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+    }
+
+    .gallery-modal-content {
+        position: relative;
+        margin: 2% auto;
+        width: 90%;
+        max-width: 1200px;
+        padding: 20px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.05);
+    }
+
+    .close-gallery {
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-gallery:hover {
+        color: var(--primary);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
     @media (max-width: 768px) {
         .hero h1 {
             font-size: 2.5rem;
@@ -644,6 +846,9 @@
         }
         .section-title {
             font-size: 2rem;
+        }
+        .category-title {
+            font-size: 1.5rem;
         }
     }
 </style>
@@ -679,8 +884,8 @@
             <div class="social-links">
                 <a href="mailto:olaleyeezekiel06@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="tel:09158473824"><i class="fas fa-phone"></i></a>
+                <a href="https://github.com/GfTechHub" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </div>
@@ -750,92 +955,234 @@
 <section id="projects" class="section bg-light">
     <div class="container">
         <h2 class="section-title">Featured Projects</h2>
+        
+        <!-- Frontend Development & Landing Pages -->
+        <h3 class="category-title">Frontend Development & Landing Pages</h3>
         <div class="row">
+            <!-- December Landing Page -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-calendar"></i>
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/december-landing.png" alt="December Landing Page">
                     </div>
                     <div class="project-content">
                         <h4>December Landing Page</h4>
                         <p>A festive, high-converting landing page with modern design and smooth animations.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://gftechhub.github.io/December-landing-page/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/GfTechHub/December-landing-page" target="_blank"><i class="fab fa-github"></i> Code</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- November Landing Page -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-lock"></i>
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/november-landing.png" alt="November Landing Page">
+                    </div>
+                    <div class="project-content">
+                        <h4>November Landing Page</h4>
+                        <p>Clean and professional landing page for autumn campaigns and new month wishes.</p>
+                        <div class="project-links">
+                            <a href="https://gftechhub.github.io/New-Month-Wishes/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/GfTechHub/New-Month-Wishes" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern SaaS Landing Page -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/saas-landing.png" alt="Modern SaaS Landing Page">
+                    </div>
+                    <div class="project-content">
+                        <h4>Modern SaaS Landing Page</h4>
+                        <p>Professional startup landing page with conversion-optimized design and modern UI.</p>
+                        <div class="project-links">
+                            <a href="https://gftechhub.github.io/Mystartup-landing-page/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/GfTechHub/Mystartup-landing-page" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password Generator -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/password-gen.png" alt="Password Generator">
                     </div>
                     <div class="project-content">
                         <h4>Password Generator</h4>
                         <p>Secure password generator with customizable options and strength indicator.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://gftechhub.github.io/Password-generator/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/GfTechHub/Password-generator" target="_blank"><i class="fab fa-github"></i> Code</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- E-Commerce Mini App -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-shopping-cart"></i>
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/ecommerce-app.png" alt="E-Commerce App">
                     </div>
                     <div class="project-content">
                         <h4>E-Commerce Mini App</h4>
                         <p>Functional e-commerce platform with cart, checkout, and product management.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://gftechhub.github.io/E-commerce-mini-app/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/GfTechHub/E-commerce-mini-app" target="_blank"><i class="fab fa-github"></i> Code</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Google Dinosaur Game -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-dragon"></i>
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/dino-game.png" alt="Dinosaur Game">
                     </div>
                     <div class="project-content">
                         <h4>Google Dinosaur Game</h4>
                         <p>Recreation of the classic Chrome dinosaur game with JavaScript.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Play Game</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://gftechhub.github.io/google-dinosaur-/" target="_blank"><i class="fas fa-gamepad"></i> Play Game</a>
+                            <a href="https://github.com/GfTechHub/google-dinosaur-" target="_blank"><i class="fab fa-github"></i> Code</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- GFData Platform -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-store"></i>
+                        <!-- LOCAL IMAGE PATH -->
+                        <img src="assets/images/projects/gfdata-platform.png" alt="GFData Platform">
                     </div>
                     <div class="project-content">
                         <h4>GFData Platform</h4>
                         <p>Digital service platform for data and subscription sales with automated workflows.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Site</a>
+                            <a href="https://sabuss.com/nannoynet9" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Site</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Virtual Assistant Services -->
+        <h3 class="category-title">Virtual Assistant Services</h3>
+        <div class="row">
+            <!-- Email & Calendar Management -->
             <div class="col-md-6 col-lg-4">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-calendar-check"></i>
                     </div>
                     <div class="project-content">
-                        <h4>November Landing Page</h4>
-                        <p>Clean and professional landing page for autumn campaigns.</p>
+                        <h4>Email & Calendar Management</h4>
+                        <p>Professional email handling, scheduling, and calendar coordination for optimal productivity.</p>
                         <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" onclick="openGallery('email-gallery'); return false;"><i class="fas fa-images"></i> View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Management -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>File Management</h4>
+                        <p>Organized file systems, cloud storage management, and document organization services.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="openGallery('file-gallery'); return false;"><i class="fas fa-images"></i> View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Marketing & Automation -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Email Marketing & Automation</h4>
+                        <p>Campaign creation, email sequences, and marketing automation for business growth.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="openGallery('marketing-gallery'); return false;"><i class="fas fa-images"></i> View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Marketing & Content Creation -->
+        <h3 class="category-title">Product Marketing & Content Creation</h3>
+        <div class="row">
+            <!-- Video 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Product Demo Video</h4>
+                        <p>Engaging product demonstration with clear messaging and professional editing.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="openVideo('assets/videos/product-demo.mp4'); return false;"><i class="fas fa-play-circle"></i> Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Marketing Campaign Video</h4>
+                        <p>Compelling marketing video designed to boost conversions and engagement.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="openVideo('assets/videos/marketing-campaign.mp4'); return false;"><i class="fas fa-play-circle"></i> Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="project-content">
+                        <h4>Tech Review Video</h4>
+                        <p>Professional product review with detailed analysis and quality production.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="openVideo('assets/videos/tech-review.mp4'); return false;"><i class="fas fa-play-circle"></i> Watch Video</a>
                         </div>
                     </div>
                 </div>
@@ -843,6 +1190,78 @@
         </div>
     </div>
 </section>
+
+<!-- Video Modal -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <span class="close-video" onclick="closeVideo()">&times;</span>
+        <video id="modalVideo" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- Gallery Modals -->
+<!-- Email & Calendar Gallery -->
+<div id="email-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('email-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">Email & Calendar Management Projects</h2>
+        <div class="gallery-grid">
+            <!-- LOCAL IMAGE PATHS -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-1.png" alt="Email Management 1">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-2.png" alt="Email Management 2">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-3.png" alt="Email Management 3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- File Management Gallery -->
+<div id="file-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('file-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">File Management Projects</h2>
+        <div class="gallery-grid">
+            <!-- LOCAL IMAGE PATHS -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-1.png" alt="File Management 1">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-2.png" alt="File Management 2">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-3.png" alt="File Management 3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Marketing Gallery -->
+<div id="marketing-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('marketing-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">Email Marketing & Automation Projects</h2>
+        <div class="gallery-grid">
+            <!-- LOCAL IMAGE PATHS -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-1.png" alt="Marketing 1">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-2.png" alt="Marketing 2">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-3.png" alt="Marketing 3">
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="experience" class="section">
     <div class="container">
@@ -914,10 +1333,13 @@
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     });
@@ -961,7 +1383,7 @@
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero-content');
-        if (hero) {
+        if (hero && scrolled < 800) {
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
             hero.style.opacity = 1 - scrolled / 500;
         }
@@ -987,24 +1409,6 @@
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
         });
     });
-
-    // Typing effect for hero subtitle (optional)
-    const subtitle = document.querySelector('.hero .subtitle');
-    if (subtitle) {
-        const text = subtitle.textContent;
-        subtitle.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                subtitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
-    }
 
     // Add ripple effect to buttons
     document.querySelectorAll('.btn-primary-custom, .project-links a').forEach(button => {
@@ -1038,7 +1442,53 @@
     document.querySelectorAll('.skill-card i').forEach(icon => {
         iconObserver.observe(icon);
     });
+
+    // Video Modal Functions
+    function openVideo(videoUrl) {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('modalVideo');
+        const source = document.getElementById('videoSource');
+        
+        source.src = videoUrl;
+        video.load();
+        modal.style.display = 'block';
+        video.play();
+    }
+
+    function closeVideo() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('modalVideo');
+        
+        modal.style.display = 'none';
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    // Gallery Modal Functions
+    function openGallery(galleryId) {
+        document.getElementById(galleryId).style.display = 'block';
+    }
+
+    function closeGallery(galleryId) {
+        document.getElementById(galleryId).style.display = 'none';
+    }
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+        const videoModal = document.getElementById('videoModal');
+        if (event.target == videoModal) {
+            closeVideo();
+        }
+        
+        const galleryModals = document.querySelectorAll('.gallery-modal');
+        galleryModals.forEach(modal => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 </script>
+
 
 </body>
 </html>
