@@ -909,6 +909,45 @@
                 font-size: 1.5rem;
             }
         }
+        /* Gallery Item Title Styling */
+.gallery-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.gallery-item-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    padding: 0 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-bottom: 0;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
     </style>
 
 
@@ -1220,95 +1259,65 @@
                 </div>
             </div>
 
-            <!-- Product Marketing & Content Creation -->
-            <h3 class="category-title">Product Marketing & Content Creation</h3>
-            <div class="row">
-                <!-- Video 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <div class="project-content">
-                            <h4>Product Demo Video</h4>
-                            <p>Engaging product demonstration with clear messaging and professional editing.</p>
-                            <div class="project-links">
-                                <a href="#" onclick="openVideo('assets/videos/product-demo.mp4'); return false;"><i
-                                        class="fas fa-play-circle"></i> Watch Video</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <div class="project-content">
-                            <h4>Marketing Campaign Video</h4>
-                            <p>Compelling marketing video designed to boost conversions and engagement.</p>
-                            <div class="project-links">
-                                <a href="#"
-                                    onclick="openVideo('assets/videos/marketing-campaign.mp4'); return false;"><i
-                                        class="fas fa-play-circle"></i> Watch Video</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <div class="project-content">
-                            <h4>Tech Review Video</h4>
-                            <p>Professional product review with detailed analysis and quality production.</p>
-                            <div class="project-links">
-                                <a href="#" onclick="openVideo('https://youtu.be/vSyC1PuE11M?si=gEvao1sjeURA6E_g'); return false;"><i
-                                        class="fas fa-play-circle"></i> Watch Video</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Product Marketing & Content Creation -->
+<h3 class="category-title">Product Marketing & Content Creation</h3>
+<div class="row">
+    <!-- Video 1 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+            <div class="project-image">
+                <i class="fas fa-video"></i>
             </div>
-        </div>
-    </section>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="video-modal">
-        <div class="video-modal-content">
-            <span class="close-video" onclick="closeVideo()">&times;</span>
-            <video id="modalVideo" controls>
-                <source id="videoSource" src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-
-    <!-- Gallery Modals -->
-    <!-- Email & Calendar Gallery -->
-    <div id="email-gallery" class="gallery-modal">
-        <div class="gallery-modal-content">
-            <span class="close-gallery" onclick="closeGallery('email-gallery')">&times;</span>
-            <h2 style="color: white; text-align: center;">Email & Calendar Management Projects</h2>
-            <div class="gallery-grid">
-                <!-- LOCAL IMAGE PATHS -->
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/email-1.png" alt="Email Management 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/email-2.png" alt="Email Management 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/email-3.png" alt="Email Management 3">
+            <div class="project-content">
+                <h4>Nannoy.com Platform Review — Prompt Engineering & AI Learning Experience</h4>
+                <p>Concise review of Nannoy.com’s Prompt Engineering training, delivered with clear insights and professional presentation.</p>
+                <div class="project-links">
+                    <a href="https://youtube.com/shorts/9hi0Igm2K9M?si=vJluudYtBVfPWHHA" target="_blank">
+                        <i class="fas fa-play-circle"></i> Watch Video
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Video 2 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+            <div class="project-image">
+                <i class="fas fa-video"></i>
+            </div>
+            <div class="project-content">
+                <h4>iPhone Automation Review</h4>
+                <p>Dynamic review of iPhone Automations with clear explanations and a polished presentation.</p>
+                <div class="project-links">
+                    <a href="https://youtu.be/vSyC1PuE11M?si=smWSFUWZppAJKUWU" target="_blank">
+                        <i class="fas fa-play-circle"></i> Watch Video
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+            <div class="project-image">
+                <i class="fas fa-video"></i>
+            </div>
+            <div class="project-content">
+                <h4>AI Tool Comparison: ChatGPT vs Google Gemini</h4>
+                <p>Concise AI tool comparison showcasing the strengths of ChatGPT and Gemini with polished presentation.</p>
+                <div class="project-links">
+                    <a href="https://youtu.be/Nc6yA7cqvuI?si=nkocK8S2rpXEOgM-" target="_blank">
+                        <i class="fas fa-play-circle"></i> Watch Video
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <!-- File Management Gallery -->
     <div id="file-gallery" class="gallery-modal">
@@ -1330,25 +1339,81 @@
         </div>
     </div>
 
-    <!-- Email Marketing Gallery -->
-    <div id="marketing-gallery" class="gallery-modal">
-        <div class="gallery-modal-content">
-            <span class="close-gallery" onclick="closeGallery('marketing-gallery')">&times;</span>
-            <h2 style="color: white; text-align: center;">Email Marketing & Automation Projects</h2>
-            <div class="gallery-grid">
-                <!-- LOCAL IMAGE PATHS -->
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/marketing-1.png" alt="Marketing 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/marketing-2.png" alt="Marketing 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/va-projects/marketing-3.png" alt="Marketing 3">
-                </div>
+  <!-- Email & Calendar Gallery -->
+<div id="email-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('email-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">Email & Calendar Management Projects</h2>
+        <div class="gallery-grid">
+            <!-- Image 1 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-3.png" alt="Email Management 1">
+                <h4 class="gallery-item-title">Professional Email Management & Inbox Organization</h4>
+            </div>
+            <!-- Image 2 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-2.png" alt="Email Management 2">
+                <h4 class="gallery-item-title">Client Scheduling Automation Using Calendly</h4>
+            </div>
+            <!-- Image 3 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/email-1.png" alt="Email Management 3">
+                <h4 class="gallery-item-title">Advanced Calendar Management & Time Blocking for Productivity</h4>
             </div>
         </div>
     </div>
+</div>
+
+<!-- File Management Gallery -->
+<div id="file-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('file-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">File Management Projects</h2>
+        <div class="gallery-grid">
+            <!-- Image 1 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-1.png" alt="File Management 1">
+                <h4 class="gallery-item-title">Automation Workflow Building with Zapier</h4>
+            </div>
+            <!-- Image 2 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-2.png" alt="File Management 2">
+                <h4 class="gallery-item-title">Document Management System</h4>
+            </div>
+            <!-- Image 3 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/file-3.png" alt="File Management 3">
+                <h4 class="gallery-item-title">File Naming Convention Setup</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Marketing Gallery -->
+<div id="marketing-gallery" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="close-gallery" onclick="closeGallery('marketing-gallery')">&times;</span>
+        <h2 style="color: white; text-align: center;">Email Marketing & Automation Projects</h2>
+        <div class="gallery-grid">
+            <!-- Image 1 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-3.png" alt="Marketing 1">
+                <h4 class="gallery-item-title">Lead Magnet Campaign</h4>
+            </div>
+            <!-- Image 2 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-1.png" alt="Marketing 2">
+                <h4 class="gallery-item-title">Email Automation Sequence</h4>
+            </div>
+            <!-- Image 3 with Title -->
+            <div class="gallery-item">
+                <img src="assets/images/va-projects/marketing-2.png" alt="Marketing 3">
+                <h4 class="gallery-item-title">Newsletter Template Design</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <section id="experience" class="section">
         <div class="container">
